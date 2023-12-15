@@ -32,19 +32,7 @@ To run Weather App locally:
 
 ## Screenshots
 
-<div markdown="1" style="display: grid; grid-template-columns: 35% 2% 35%; text-align: center">
-  <div>
-  <img src="images/city-search-interface.png" alt="City Search Interface" />
-  <br>
-  <em>City Search Interface</em>
-</div>
-<div></div>
-<div>
-  <img src="images/weather-information-card.png" alt="Weather Information Card" />
-  <br>
-  <em>Weather Information Card</em>
-</div>
-</div>
+<img src="images/interface.png" alt="City Search Interface & Weather Information Card"/>
 
 ## Contribution Guidelines
 
