@@ -1,40 +1,42 @@
 # Weather App
 
-## Overview
+**Explore the Weather App in action:** [Weather App | Open Meteo Live](https://eskendarov.github.io/weather-app/)
+
+### Overview
 
 Weather App is a user-friendly platform that delivers up-to-date weather information. Utilizing the Open-Meteo API, it
 presents localized weather conditions, including temperature, humidity, and wind metrics, complemented by intuitive
 icons.
 
-## Key Features
+### Key Features
 
 - **City Lookup**: Obtain weather stats for any global city.
 - **Comprehensive Reports**: Access details on temperature readings (Celsius/Fahrenheit), humidity levels, wind
   velocities, and condition-specific icons.
 
-## Tech Stack
+### Tech Stack
 
 - **Frontend**: Crafted with HTML and CSS for layout and styling.
 - **Functionality**: JavaScript (Async/Await) for responsive API interactions and UI updates.
 - **Data Source**: Open-Meteo API for real-time meteorological data.
 
-## Local Setup
+### Local Setup
 
 To run Weather App locally:
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/eskendarov/weather-forecast-open-meteo.git
+    git clone https://github.com/eskendarov/weather-app.git
     ```
 2. Navigate to the cloned directory and open `index.html` in your preferred web browser.
 
 3. Begin by typing a city into the search bar to receive instant weather details.
 
-## Screenshots
+### Screenshots
 
 <img src="images/interface.png" alt="City Search Interface & Weather Information Card"/>
 
-## Contribution Guidelines
+### Contribution Guidelines
 
 I appreciate contributions. To contribute:
 
@@ -44,7 +46,7 @@ I appreciate contributions. To contribute:
 4. Push to the branch (`git push origin feature/AmazingFeature`).
 5. Open a pull request.
 
-## Contact
+### Contact
 
 For any inquiries or issues related to the Weather App, please reach out:
 
