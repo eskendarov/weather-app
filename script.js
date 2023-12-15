@@ -40,7 +40,11 @@ async function fetchWeatherForLocation(city, state, latitude, longitude) {
     try {
         const fullUrl = `${WEATHER_BASE_URL}?latitude=${latitude}&longitude=${longitude}&current=${CURRENT_PARAMETERS}&wind_speed_unit=${WIND_SPEED_UNIT}&timezone=auto`;
         let response = await fetch(fullUrl);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.ok) {
+            console.error(`HTTP error! status: ${response.status}`);
+            alert("Error fetching weather data!");
+            return; // Exit the function or handle the error appropriately
+        }
         let weatherData = await response.json();
         let current = weatherData.current;
 
@@ -99,13 +103,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (data && data.results && data.results.length > 0) {
                 data.results.forEach((item) => {
-                    const { id, name, admin1, latitude, longitude } = item;
+                    const {id, name, admin1, latitude, longitude} = item;
                     const div = document.createElement("div");
                     div.id = id;
                     div.style.fontSize = "small";
                     div.textContent = `${name}, ${admin1}`;
                     dropdownList.appendChild(div);
-                    locations.set(`${id}`, { city: name, state: admin1, latitude: latitude, longitude: longitude });
+                    locations.set(`${id}`, {city: name, state: admin1, latitude: latitude, longitude: longitude});
                 });
             } else {
                 dropdownList.style.display = "none";
@@ -420,5 +424,5 @@ function getWmoCode(isDay, condition) {
         },
     };
 
-    return data.hasOwnProperty(condition) ? data[condition][isDay ? "day" : "night"] : { description: "Not available" };
+    return data.hasOwnProperty(condition) ? data[condition][isDay ? "day" : "night"] : {description: "Not available"};
 }
