@@ -43,20 +43,27 @@ async function fetchWeatherForLocation(city, state, latitude, longitude) {
         if (!response.ok) {
             console.error(`HTTP error! status: ${response.status}`);
             alert("Error fetching weather data!");
-            return; // Exit the function or handle the error appropriately
+            return;
         }
-        let weatherData = await response.json();
-        let current = weatherData.current;
+        let {
+            current: {
+                temperature_2m,
+                is_day,
+                weather_code,
+                relative_humidity_2m,
+                wind_speed_10m
+            }
+        } = await response.json();
 
         updateWeatherDisplay(
             city,
             state,
-            current.temperature_2m,
-            (current.temperature_2m * 9) / 5 + 32,
-            !!parseInt(current.is_day), // boolean
-            current.weather_code,
-            current.relative_humidity_2m,
-            current.wind_speed_10m
+            temperature_2m,
+            (temperature_2m * 9) / 5 + 32,
+            !!parseInt(is_day), // boolean
+            weather_code,
+            relative_humidity_2m,
+            wind_speed_10m
         );
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -97,19 +104,19 @@ document.addEventListener("DOMContentLoaded", function () {
     searchInput.addEventListener("input", async function () {
         const cityName = this.value;
         try {
-            let data = await fetchLocationByCity(cityName);
+            let {results} = await fetchLocationByCity(cityName);
             dropdownList.innerHTML = ""; // Clears current list
             dropdownList.style.display = "block"; // Shows the list
 
-            if (data && data.results && data.results.length > 0) {
-                data.results.forEach((item) => {
-                    const { id, name, admin1, latitude, longitude } = item;
+            if (results && results.length > 0) {
+                results.forEach((item) => {
+                    const {id, name, admin1, latitude, longitude} = item;
                     const div = document.createElement("div");
                     div.id = id;
                     div.style.fontSize = "small";
                     div.textContent = `${name}, ${admin1}`;
                     dropdownList.appendChild(div);
-                    locations.set(`${id}`, { city: name, state: admin1, latitude: latitude, longitude: longitude });
+                    locations.set(`${id}`, {city: name, state: admin1, latitude: latitude, longitude: longitude});
                 });
             } else {
                 dropdownList.style.display = "none";
@@ -140,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 Array.from(dropdownList.children).forEach((div, i) => {
                     if (i === index) {
                         div.classList.add("highlighted");
-                        div.scrollIntoView({ block: "nearest" }); // Ensure the item is visible in the dropdown
+                        div.scrollIntoView({block: "nearest"}); // Ensure the item is visible in the dropdown
                     } else {
                         div.classList.remove("highlighted");
                     }
@@ -456,5 +463,5 @@ function getWmoCode(isDay, condition) {
         },
     };
 
-    return data.hasOwnProperty(condition) ? data[condition][isDay ? "day" : "night"] : { description: "Not available" };
+    return data.hasOwnProperty(condition) ? data[condition][isDay ? "day" : "night"] : {description: "Not available"};
 }
