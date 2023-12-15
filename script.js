@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let location = locations.get(event.target.id);
                 await fetchWeatherForLocation(location.city, location.state, location.latitude, location.longitude);
                 searchInput.value = "";
-                locations.clear;
+                locations.clear();
                 searchInput.focus();
             });
         } catch (error) {
