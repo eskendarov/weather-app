@@ -18,7 +18,6 @@ const WIND_SPEED_UNIT = "ms";
 /**
  * Fetches location data by city name.
  * @param {string} cityName - The name of the city to search for.
- * @return - Location data.
  */
 async function fetchLocationByCity(cityName) {
     if (cityName.length > 1) {
