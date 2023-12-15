@@ -29,7 +29,7 @@ To run Weather App locally:
 
 ## Screenshots
 
-<div style="display: grid; grid-template-columns: 35% 2% 35%;" align="center">
+<div style="display: grid; grid-template-columns: 35% 2% 35%; text-align: center">
   <div>
   <img src="images/city-search-interface.png" alt="City Search Interface" />
   <br>
