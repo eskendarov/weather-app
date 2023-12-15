@@ -2,18 +2,21 @@
 
 ## Overview
 
-Weather App is a user-friendly platform that delivers up-to-date weather information. Utilizing the Open-Meteo API, it presents localized weather conditions, including temperature, humidity, and wind metrics, complemented by intuitive icons.
+Weather App is a user-friendly platform that delivers up-to-date weather information. Utilizing the Open-Meteo API, it
+presents localized weather conditions, including temperature, humidity, and wind metrics, complemented by intuitive
+icons.
 
 ## Key Features
 
--   **City Lookup**: Obtain weather stats for any global city.
--   **Comprehensive Reports**: Access details on temperature readings (Celsius/Fahrenheit), humidity levels, wind velocities, and condition-specific icons.
+- **City Lookup**: Obtain weather stats for any global city.
+- **Comprehensive Reports**: Access details on temperature readings (Celsius/Fahrenheit), humidity levels, wind
+  velocities, and condition-specific icons.
 
 ## Tech Stack
 
--   **Frontend**: Crafted with HTML and CSS for layout and styling.
--   **Functionality**: JavaScript (Async/Await) for responsive API interactions and UI updates.
--   **Data Source**: Open-Meteo API for real-time meteorological data.
+- **Frontend**: Crafted with HTML and CSS for layout and styling.
+- **Functionality**: JavaScript (Async/Await) for responsive API interactions and UI updates.
+- **Data Source**: Open-Meteo API for real-time meteorological data.
 
 ## Local Setup
 
@@ -29,7 +32,7 @@ To run Weather App locally:
 
 ## Screenshots
 
-<div style="display: grid; grid-template-columns: 35% 2% 35%; text-align: center">
+<div markdown="1" style="display: grid; grid-template-columns: 35% 2% 35%; text-align: center">
   <div>
   <img src="images/city-search-interface.png" alt="City Search Interface" />
   <br>
@@ -57,8 +60,8 @@ I appreciate contributions. To contribute:
 
 For any inquiries or issues related to the Weather App, please reach out:
 
--   **Email**: [envereskendarov@gmail.com](mailto:envereskendarov@gmail.com)
--   **GitHub Issue Tracker**: [Submit Issues](https://github.com/eskendarov/weather-forecast-open-meteo/issues)
--   **LinkedIn**: [linkedin.com/eskendarov](http://linkedin.com/in/eskendarov/)
+- **Email**: [envereskendarov@gmail.com](mailto:envereskendarov@gmail.com)
+- **GitHub Issue Tracker**: [Submit Issues](https://github.com/eskendarov/weather-forecast-open-meteo/issues)
+- **LinkedIn**: [linkedin.com/eskendarov](http://linkedin.com/in/eskendarov/)
 
 Feel free to contact me for support, to report bugs, or to discuss potential contributions and ideas to improve the app.
