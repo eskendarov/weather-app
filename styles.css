@@ -80,3 +80,7 @@ body {
     margin: 5px 0;
     color: #acbac7;
 }
+
+.highlighted {
+    background-color: #3a4149;
+}

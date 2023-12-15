@@ -21,7 +21,7 @@ const WIND_SPEED_UNIT = "ms";
  */
 async function fetchLocationByCity(cityName) {
     if (cityName.length > 1) {
-        const fullUrl = `${GEOCODING_BASE_URL}?name=${encodeURIComponent(cityName)}&count=5`;
+        const fullUrl = `${GEOCODING_BASE_URL}?name=${encodeURIComponent(cityName)}&count=10`;
         let response = await fetch(fullUrl);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
@@ -103,21 +103,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (data && data.results && data.results.length > 0) {
                 data.results.forEach((item) => {
-                    const {id, name, admin1, latitude, longitude} = item;
+                    const { id, name, admin1, latitude, longitude } = item;
                     const div = document.createElement("div");
                     div.id = id;
                     div.style.fontSize = "small";
                     div.textContent = `${name}, ${admin1}`;
                     dropdownList.appendChild(div);
-                    locations.set(`${id}`, {city: name, state: admin1, latitude: latitude, longitude: longitude});
+                    locations.set(`${id}`, { city: name, state: admin1, latitude: latitude, longitude: longitude });
                 });
             } else {
                 dropdownList.style.display = "none";
             }
 
+            let currentIndex = -1;
+            searchInput.addEventListener("keydown", function (event) {
+                let itemCount = dropdownList.children.length;
+
+                if (event.key === "ArrowDown") {
+                    if (currentIndex < itemCount - 1) {
+                        currentIndex++;
+                        highlightDropdownItem(currentIndex);
+                    }
+                } else if (event.key === "ArrowUp") {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        highlightDropdownItem(currentIndex);
+                    }
+                } else if (event.key === "Enter") {
+                    if (currentIndex !== -1) {
+                        dropdownList.children[currentIndex].click();
+                    }
+                }
+            });
+
+            function highlightDropdownItem(index) {
+                Array.from(dropdownList.children).forEach((div, i) => {
+                    if (i === index) {
+                        div.classList.add("highlighted");
+                        div.scrollIntoView({ block: "nearest" }); // Ensure the item is visible in the dropdown
+                    } else {
+                        div.classList.remove("highlighted");
+                    }
+                });
+            }
+
             dropdownList.addEventListener("click", async function (event) {
                 let location = locations.get(event.target.id);
-                fetchWeatherForLocation(location.city, location.state, location.latitude, location.longitude);
+                await fetchWeatherForLocation(location.city, location.state, location.latitude, location.longitude);
                 searchInput.value = "";
                 locations.clear;
                 searchInput.focus();
@@ -424,5 +456,5 @@ function getWmoCode(isDay, condition) {
         },
     };
 
-    return data.hasOwnProperty(condition) ? data[condition][isDay ? "day" : "night"] : {description: "Not available"};
+    return data.hasOwnProperty(condition) ? data[condition][isDay ? "day" : "night"] : { description: "Not available" };
 }
