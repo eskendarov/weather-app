@@ -210,6 +210,7 @@ function getWmoCode(isDay, condition) {
         96: {description: "Light Thunderstorms With Hail", image: "t01"},
         99: {description: "Thunderstorm With Hail", image: "t05"}
     }
+
     return data.hasOwnProperty(condition)
         ? {
             description: `${data[condition].description}`,
