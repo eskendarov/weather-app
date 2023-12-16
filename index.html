@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Information | Open-Meteo</title>
-    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/96/partly-cloudy-day.png">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <main id="contentContainer" class="content-container">
-        <section aria-label="City Search">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Weather Information | Open-Meteo</title>
+        <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/96/partly-cloudy-day.png" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="contentContainer" class="content-container">
             <div class="dropdown">
                 <label for="dropdownSearch"></label>
-                <input type="text" id="dropdownSearch" placeholder="Enter city name...">
+                <input type="text" id="dropdownSearch" placeholder="Enter city name..." />
                 <div id="dropdownList" class="dropdown-list" aria-expanded="false" role="listbox"></div>
             </div>
-        </section>
 
-        <section aria-label="Weather Information">
-            <article id="weatherCard" class="weather-card">
-                <header>
-                    <h1 id="location">Golden City, Wakanda</h1>
-                </header>
+            <div id="weatherCard" class="weather-card">
+                <div id="date" class="date">Friday, 15 December 2023</div>
+                <h1 id="location">Golden City, Wakanda</h1>
+
                 <div class="weather-info">
-                    <p>Temperature: <span id="tempInCelsius">35</span>°C | <span id="tempInFahrenheit">95</span>°F</p>
-                    <p>Condition: <span id="condition">Sunshower</span></p>
-                    <img width="70px" id="conditionImg" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-rainbows-lighting-flaticons-lineal-color-flat-icons.png" alt="Weather condition image">
-                    <p>Humidity: <span id="humidity">34</span>%</p>
-                    <p>Wind Speed: <span id="wind">1.5</span> m/s</p>
-                </div>
-            </article>
-        </section>
-    </main>
+                    <p class="temp"><span id="tempInCelsius">35</span>&degC | <span id="tempInFahrenheit">95</span>&degF</p>
+                    <div class="panel">
+                        <div class="left-panel">
+                            <img width="95px" id="conditionImg" src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-rainbows-lighting-flaticons-lineal-color-flat-icons.png" alt="Weather condition image" />
+                        </div>
 
-    <script src="script.js"></script>
-</body>
+                        <div class="right-panel">
+                            <p>Condition: <span id="condition">Sunshower</span></p>
+                            <p>Humidity: <span id="humidity">34</span>%</p>
+                            <p>Wind Speed: <span id="wind">1.5</span> m/s</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
 </html>

@@ -47,6 +47,7 @@ async function fetchWeatherForLocation(city, state, latitude, longitude) {
         }
         let {
             current: {
+                time,
                 temperature_2m,
                 is_day,
                 weather_code,
@@ -56,6 +57,7 @@ async function fetchWeatherForLocation(city, state, latitude, longitude) {
         } = await response.json();
 
         updateWeatherDisplay(
+            time,
             city,
             state,
             temperature_2m,
@@ -72,7 +74,19 @@ async function fetchWeatherForLocation(city, state, latitude, longitude) {
 }
 
 /**
+ * Formats a date string into a more readable format.
+ *
+ * @param {string} dateString - The date string to format. Expected in the format 'YYYY-MM-DDTHH:MM'.
+ * @returns {string} A formatted string representing the date in the format 'weekday, day month year' (e.g., "Friday, 15 December 2023").
+ */
+function formatDate(dateString) {
+    const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+    return new Date(dateString).toLocaleDateString('en-US', options);
+}
+
+/**
  * Updates the weather information display on the webpage.
+ * @param {string} date - Date.
  * @param {string} city - The city name.
  * @param {string} state - The state or region name.
  * @param {number} tempInCelsius - The temperature in Celsius.
@@ -82,8 +96,9 @@ async function fetchWeatherForLocation(city, state, latitude, longitude) {
  * @param {number} humidity - The humidity percentage.
  * @param {number} wind - The wind speed in meters per second.
  */
-function updateWeatherDisplay(city, state, tempInCelsius, tempInFahrenheit, isDay, weather_code, humidity, wind) {
+function updateWeatherDisplay(date, city, state, tempInCelsius, tempInFahrenheit, isDay, weather_code, humidity, wind) {
     let {description, image} = getWmoCode(isDay, weather_code);
+    document.getElementById("date").textContent = `${formatDate(date)}`;
     document.getElementById("location").textContent = `${city}, ${state.toUpperCase()}`;
     document.getElementById("tempInCelsius").textContent = `${tempInCelsius.toFixed(1)}`;
     document.getElementById("tempInFahrenheit").textContent = `${tempInFahrenheit.toFixed(1)}`;
@@ -96,6 +111,7 @@ function updateWeatherDisplay(city, state, tempInCelsius, tempInFahrenheit, isDa
 
 // Event Listeners
 document.addEventListener("DOMContentLoaded", function () {
+    fetchWeatherForLocation("San Francisco", "California", 37.365433, -121.89502);
     const searchInput = document.getElementById("dropdownSearch");
     const dropdownList = document.getElementById("dropdownList");
     searchInput.focus();
@@ -113,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const {id, name, admin1, latitude, longitude} = item;
                     const div = document.createElement("div");
                     div.id = id;
-                    div.style.fontSize = "small";
+                    div.style.fontSize = "16px";
                     div.textContent = `${name}, ${admin1}`;
                     dropdownList.appendChild(div);
                     locations.set(`${id}`, {city: name, state: admin1, latitude: latitude, longitude: longitude});
@@ -181,10 +197,10 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 function getWmoCode(isDay, condition) {
     const data = {
-         0: {description: "Clear", image: "c01"},
-         1: {description: "Mainly Clear", image: "c01"},
-         2: {description: "Partly Cloudy", image: "c02"},
-         3: {description: "Cloudy", image: "c03"},
+        0: {description: "Clear", image: "c01"},
+        1: {description: "Mainly Clear", image: "c01"},
+        2: {description: "Partly Cloudy", image: "c02"},
+        3: {description: "Cloudy", image: "c03"},
         45: {description: "Foggy", image: "a05"},
         48: {description: "Rime Fog", image: "a05"},
         51: {description: "Light Drizzle", image: "d01"},
