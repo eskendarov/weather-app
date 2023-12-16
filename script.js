@@ -181,40 +181,39 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 function getWmoCode(isDay, condition) {
     const data = {
-         0: {description: "Clear", image: "01"},
-         1: {description: "Mainly Clear", image: "01"},
-         2: {description: "Partly Cloudy", image: "02"},
-         3: {description: "Cloudy", image: "03"},
-        45: {description: "Foggy", image: "50"},
-        48: {description: "Rime Fog", image: "50"},
-        51: {description: "Light Drizzle", image: "09"},
-        53: {description: "Drizzle", image: "09"},
-        55: {description: "Heavy Drizzle", image: "09"},
-        56: {description: "Light Freezing Drizzle", image: "09"},
-        57: {description: "Freezing Drizzle", image: "09"},
-        61: {description: "Light Rain", image: "10"},
-        63: {description: "Rain", image: "10"},
-        65: {description: "Heavy Rain", image: "10"},
-        66: {description: "Light Freezing Rain", image: "10"},
-        67: {description: "Freezing Rain", image: "10"},
-        71: {description: "Light Snow", image: "13"},
-        73: {description: "Snow", image: "13"},
-        75: {description: "Heavy Snow", image: "13"},
-        77: {description: "Snow Grains", image: "13"},
-        80: {description: "Light Showers", image: "09"},
-        81: {description: "Showers", image: "09"},
-        82: {description: "Heavy Showers", image: "09"},
-        85: {description: "Light Snow Showers", image: "13"},
-        86: {description: "Snow Showers", image: "13"},
-        95: {description: "Thunderstorm", image: "11"},
-        96: {description: "Light Thunderstorms With Hail", image: "11"},
-        99: {description: "Thunderstorm With Hail", image: "11"}
+         0: {description: "Clear", image: "c01"},
+         1: {description: "Mainly Clear", image: "c01"},
+         2: {description: "Partly Cloudy", image: "c02"},
+         3: {description: "Cloudy", image: "c03"},
+        45: {description: "Foggy", image: "a05"},
+        48: {description: "Rime Fog", image: "a05"},
+        51: {description: "Light Drizzle", image: "d01"},
+        53: {description: "Drizzle", image: "d02"},
+        55: {description: "Heavy Drizzle", image: "d03"},
+        56: {description: "Light Freezing Drizzle", image: "f01"},
+        57: {description: "Freezing Drizzle", image: "f01"},
+        61: {description: "Light Rain", image: "r01"},
+        63: {description: "Rain", image: "r02"},
+        65: {description: "Heavy Rain", image: "r03"},
+        66: {description: "Light Freezing Rain", image: "f01"},
+        67: {description: "Freezing Rain", image: "f01"},
+        71: {description: "Light Snow", image: "s01"},
+        73: {description: "Snow", image: "s02"},
+        75: {description: "Heavy Snow", image: "s03"},
+        77: {description: "Snow Grains", image: "s02"},
+        80: {description: "Light Showers", image: "r04"},
+        81: {description: "Showers", image: "r05"},
+        82: {description: "Heavy Showers", image: "r06"},
+        85: {description: "Light Snow Showers", image: "s01"},
+        86: {description: "Snow Showers", image: "s01"},
+        95: {description: "Thunderstorm", image: "t02"},
+        96: {description: "Light Thunderstorms With Hail", image: "t01"},
+        99: {description: "Thunderstorm With Hail", image: "t05"}
     }
-
     return data.hasOwnProperty(condition)
         ? {
             description: `${data[condition].description}`,
-            image: `https://openweathermap.org/img/wn/${data[condition].image}${isDay ? "d" : "n"}@2x.png`
+            image: `https://cdn.weatherbit.io/static/img/icons/${data[condition].image}${isDay ? "d" : "n"}.png`
         }
         : {description: "Not available"};
 }
