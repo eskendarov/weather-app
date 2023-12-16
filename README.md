@@ -13,6 +13,7 @@ icons.
 - **City Lookup**: Obtain weather stats for any global city.
 - **Comprehensive Reports**: Access details on temperature readings (Celsius/Fahrenheit), humidity levels, wind
   velocities, and condition-specific icons.
+- **Adaptive Theme**: Supports light and dark themes based on the user's system settings, enhancing visual comfort and accessibility.
 
 ### Tech Stack
 
